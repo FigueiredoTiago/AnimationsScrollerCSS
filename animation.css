@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: black;
+    font-size: 62.5%;
+    color: #fdfdfd;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    position: relative;
+    height: 100svh;
+    overflow-x: clip;
+
+    display: grid;
+    place-items: center;
+}
+
+.header-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+    animation: fade-out-image linear forwards;
+    animation-timeline: view();
+    animation-range: exit;
+    scale: 1;
+    transform-origin: bottom;
+}
+
+.header-content {
+    display: grid;
+    place-items: center;
+    max-width: 50vw;
+    gap: 2rem;
+    font-size: 2.4rem;
+
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -300px;
+}
+
+
+/* animations */
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out-image {
+    25% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+        scale: 1.5;
+    }
+}
+
+
+
+
+/*main*/
+
+.container {
+    display: grid;
+    place-items: center;
+    gap: 10rem;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.article-section {
+    max-width: 50vw;
+    font-size: 2.4rem;
+    display: grid;
+    place-items: center;
+    height: 100svh;
+}
+
+.article-section img {
+    width: 100%;
+    height: 40rem;
+    max-width: 50rem;
+
+    scale: .8;
+    opacity: 0;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: entry 200px;
+}
+
+/* animations */
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/* animation read text */
+
+.scroll-reveal span {
+    color: hsl(0 0% 100% / 0.2);
+    background-image: linear-gradient(90deg, white, white);
+    background-clip: text;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    animation: scroll-reveal-animation linear forwards;
+    animation-timeline: view(y);
+}
+
+/* para controlar a velocidade use o Range Start e Range End */
+
+.scroll-reveal h1 span {
+    animation-range-start: cover 25vh;
+    animation-range-end: cover 30vh;
+}
+
+.scroll-reveal p span {
+    animation-range-start: cover 10vh;
+    animation-range-end: cover 20vh;
+}
+
+
+@keyframes scroll-reveal-animation {
+    to {
+        background-size: 100% 100%;
+    }
+
+}
+
+
+/* animação carrosel com efeito scroll */
+
+.carousel {
+    height: 50vh;
+    width: 50vw;
+    overflow: clip;
+    /*mask: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);*/
+
+    display: grid;
+    place-items: center;
+}
+
+.carousel-content {
+    width: max-content;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 2rem;
+    animation: scroller linear;
+    animation-timeline: scroll();
+}
+
+.carousel-content:nth-child(2) {
+    animation-direction: reverse;
+}
+
+.carousel-content .carousel-item {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 9, 175);
+    color: #fdfdfd;
+
+}
+
+@keyframes scroller {
+    to {
+        transform: translate(calc(-50% - 0.5rem));
+    }
+}
